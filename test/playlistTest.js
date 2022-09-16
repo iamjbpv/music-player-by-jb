@@ -20,7 +20,7 @@ describe("POST /PLAYLIST", () => {
   });
   var config = {
     method: "post",
-    url: "http://localhost:8080/api/user/playlist",
+    url: "http://localhost:5000/api/user/playlist",
     headers: {
       "Content-Type": "application/json",
     },

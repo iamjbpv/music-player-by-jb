@@ -17,6 +17,7 @@ connectDB();
 
 //init middlewarre
 app.use(express.json({ extended: false }));
+app.use(express.static(path.join(__dirname, "build")));
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); //  MIDDLEWARE to allow any address
 
@@ -52,6 +53,6 @@ app.use("/api/user/", require("./routes/api/route"));
 //static no dynamic files, server static files
 app.use(express.static(path.join(__dirname, "client/dist")));
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server stated on port ${PORT}`));
