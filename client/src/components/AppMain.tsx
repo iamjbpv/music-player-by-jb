@@ -24,6 +24,8 @@ const AppMain = (props: { audiocontrols: any }) => {
 
       audiocontrols.audioObject.src = audiocontrols.previewUrl;
       if (audiocontrols.playing) {
+        audiocontrols.audioObject.volume = 0.3;
+
         audiocontrols.audioObject.play();
       } else {
         audiocontrols.audioObject.pause();
