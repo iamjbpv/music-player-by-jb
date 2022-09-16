@@ -16,7 +16,7 @@
     "spotify-web-api-node": "^4.0.0"
   },
   "scripts": {
-    "postinstall": "npm run build --prefix client",
+    "postinstall": "npm install && npm install --prefix client && npm run build --prefix client",
     "start": "node server",
     "server": "nodemon server",
     "dev": "concurrently \"npm run server\" \"npm run dev\"",
