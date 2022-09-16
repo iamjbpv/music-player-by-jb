@@ -16,8 +16,7 @@
     "spotify-web-api-node": "^4.0.0"
   },
   "scripts": {
-    "postinstall": "npm install && npm install --prefix client && npm run build --prefix client",
-    "start": "node server",
+    "start": "npm run build --prefix client && node server",
     "server": "nodemon server",
     "dev": "concurrently \"npm run server\" \"npm run dev\"",
     "test": "mocha --recursive --exit"
