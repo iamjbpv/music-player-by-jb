@@ -51,7 +51,7 @@ app.use("/api/", require("./routes/api/spotify"));
 app.use("/api/user/", require("./routes/api/route"));
 
 //static no dynamic files, server static files
-app.use(express.static(path.join(__dirname, "client/dist")));
+app.use(express.static(path.join(__dirname, "client/build")));
 
 const PORT = process.env.PORT || 5000;
 
