@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build  && mv build ../",
+    "build": "react-scripts build  && mv build /../",
     "eject": "react-scripts eject",
     "test": "cypress open"
   },
