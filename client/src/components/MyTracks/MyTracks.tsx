@@ -73,45 +73,47 @@ const MyTracks = (props: {
   const handleRemoveToPlayList = async (trackDetails: any) => {
     let res = await removeTrack(trackDetails._id);
     if (res.status === 200) {
-      let newArr = trackList.filter((track: any) => {
-        return track._id !== trackDetails._id;
-      });
-      setTrackList(newArr);
+      fetchMyTracks();
+      // let newArr = trackList.filter((track: any) => {
+      //   return track._id !== trackDetails._id;
+      // });
+      // setTrackList(newArr);
     }
 
     // }
 
     // setModalAddToPlaylist(true);
   };
+
+  const fetchMyTracks = async () => {
+    let res;
+    if (!playListId) {
+      res = await getMyTracks({ username: "jebeekun" });
+    } else {
+      res = await getMyPlaylistTracks({
+        username: "jebeekun",
+        playListId: playListId,
+        sortByArtistName: sortByArtistName,
+        sortByTrackName: sortByTrackName,
+      });
+    }
+
+    if (res.status === 200) {
+      let count = 0;
+
+      const modifiedTracks = res.data.map((track: any) => {
+        count++;
+        return {
+          ...track,
+          trackNumber: count,
+        };
+      });
+      setTrackList(modifiedTracks);
+      setTrackListOriginal(modifiedTracks);
+      // setTrackList(res.data.tracks.items);
+    }
+  };
   useEffect(() => {
-    const fetchMyTracks = async () => {
-      let res;
-      if (!playListId) {
-        res = await getMyTracks({ username: "jebeekun" });
-      } else {
-        res = await getMyPlaylistTracks({
-          username: "jebeekun",
-          playListId: playListId,
-          sortByArtistName: sortByArtistName,
-          sortByTrackName: sortByTrackName,
-        });
-      }
-
-      if (res.status === 200) {
-        let count = 0;
-
-        const modifiedTracks = res.data.map((track: any) => {
-          count++;
-          return {
-            ...track,
-            trackNumber: count,
-          };
-        });
-        setTrackList(modifiedTracks);
-        setTrackListOriginal(modifiedTracks);
-        // setTrackList(res.data.tracks.items);
-      }
-    };
     fetchMyTracks();
   }, [sortByArtistName, sortByTrackName, playListId]);
 
